@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(to bottom, #fff0f3, #ffe6ea);
+    font-family: 'Playfair Display', serif;
+    overflow-x: hidden;
+    color: #4b2c2c;
+    text-align: center;
+}
+
+/* Entry Gate */
+#qrGate {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #fff0f3, #ffe6ea);
+}
+
+/* Main container */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 60px 20px;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 72px;
+    color: #b11226;
+}
+
+h2 {
+    font-weight: 400;
+}
+
+.heart {
+    font-size: 40px;
+    margin: 20px 0;
+    color: #b11226;
+}
+
+.message {
+    background: rgba(255,255,255,0.65);
+    padding: 35px;
+    border-radius: 15px;
+    font-size: 20px;
+    line-height: 1.9;
+    margin-top: 30px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.counter {
+    margin-top: 50px;
+    font-size: 22px;
+}
+
+.counter span {
+    font-size: 26px;
+    color: #b11226;
+    font-weight: 600;
+}
+
+.valentine-box {
+    margin-top: 60px;
+    position: relative;
+    height: 140px;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+#yesBtn {
+    background: #b11226;
+    color: white;
+}
+
+/* Faster NO button */
+#noBtn {
+    background: #ddd;
+    position: absolute;
+    transition: transform 0.08s ease-out;
+}
+
+.signature {
+    margin-top: 50px;
+    font-size: 22px;
+}
+
+.signature span {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    color: #b11226;
+}
+
+footer {
+    margin-top: 70px;
+    font-size: 14px;
+    color: #7a4a4a;
+}
+
+/* Floating hearts */
+.heart-float {
+    position: fixed;
+    bottom: -10px;
+    font-size: 24px;
+    color: #b11226;
+    animation: float 8s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+@media (max-width: 600px) {
+    h1 { font-size: 56px; }
+    .message { font-size: 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Entry Gate -->
+<div id="qrGate">
+    <h1>For You ❤️</h1>
+    <p style="font-size:22px;max-width:400px;">
+        I made something special just for you 💕
+    </p>
+    <button onclick="enterSite()" style="background:#b11226;color:white;">
+        Open 💖
+    </button>
+</div>
+
+<!-- Main Content -->
+<div id="mainContent" style="display:none;">
+
+<div class="container">
+
+<h1>My Dearest SANA</h1>
+<h2>Happy Valentine’s Day Sana ❤️</h2>
+
+<div class="heart">♥ ♥ ♥</div>
+
+<div class="message">
+My Baby Girl,<br><br>
+Since the day you came into my life, everything has felt brighter and more meaningful.
+I want nothing else in this life than to be with you Maya.
+You are my comfort, my happiness, and my safe place.<br><br>
+Every moment with you — the laughs, the quiet times, and even the challenges —
+has only made my love for you stronger.
+I choose you, today and every day that follows.
+You are the best goddamn thing that’s ever happened to me, Sana.
+</div>
+
+<div class="gallery">
+    <img src="photos/photo1.jpg">
+    <img src="photos/photo2.jpg">
+    <img src="photos/photo3.jpg">
+    <img src="photos/photo4.jpg">
+    <img src="photos/photo5.jpg">
+    <img src="photos/photo6.jpg">
+</div>
+
+<div class="counter">
+    We’ve been together for<br>
+    <span id="days">0</span> days ❤️
+</div>
+
+<div class="valentine-box">
+    <h3>Will you be my Valentine? 💖</h3>
+    <button id="yesBtn" onclick="yesClicked()">Yes 💕</button>
+    <button id="noBtn" onmouseover="moveNo()">No 🙃</button>
+</div>
+
+<div class="signature">
+    Forever yours,<br>
+    <span>Sammy</span>
+</div>
+
+<footer>
+    Made just for you ❤️
+</footer>
+
+</div>
+</div>
+
+<script>
+// Entry Gate
+function enterSite() {
+    document.getElementById("qrGate").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+}
+
+// Days counter (change date if needed)
+const startDate = new Date("2025-10-03");
+const today = new Date();
+const diffTime = today - startDate;
+document.getElementById("days").innerText =
+Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+// Faster NO button
+function moveNo() {
+    const btn = document.getElementById("noBtn");
+    const x = Math.random() * 400 - 200;
+    const y = Math.random() * 260 - 130;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// YES button
+function yesClicked() {
+    alert("I knew you wouldn’t say no, my Sana ❤️");
+}
+
+// Floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart-float";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+}, 500);
+</script>
+
+</body>
+</html>
